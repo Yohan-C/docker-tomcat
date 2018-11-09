@@ -39,5 +39,4 @@ RUN apt-get update \
 
 WORKDIR /opt/tomcat/webapps
 
-# Background
 CMD ["start.sh"]
