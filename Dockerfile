@@ -36,7 +36,8 @@ RUN apt-get update \
 	&& echo '#!/bin/sh' > /opt/tomcat/bin/stop.sh \
 	&& echo 'shutdown.sh -force' >> /opt/tomcat/bin/stop.sh \
 	&& chmod 777 /opt/tomcat/bin/*.sh \
-	&& chmod 777 /opt/maven/bin/*.cmd
+	&& chmod 777 /opt/maven/bin/*.cmd \
+	&& apt-get clean all
 
 WORKDIR /opt/tomcat/webapps
 
