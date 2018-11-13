@@ -12,6 +12,7 @@ ENV PATH=$PATH:/opt/maven/bin:/opt/tomcat/bin
 # Git
 # Nano
 RUN apt-get update \
+	&& cd ~/ \
 	&& apt-get -y install openjdk-8-jdk \
 	&& java -version \
 	&& apt-get -y install wget \
