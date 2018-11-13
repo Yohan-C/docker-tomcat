@@ -4,6 +4,7 @@ LABEL maintainer="semoss@semoss.org"
 
 ENV PATH=$PATH:/opt/maven/bin:/opt/tomcat/bin
 
+# Install the following:
 # Java
 # Tomcat
 # Wget
