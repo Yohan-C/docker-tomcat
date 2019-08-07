@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:9
 
 LABEL maintainer="semoss@semoss.org"
 
