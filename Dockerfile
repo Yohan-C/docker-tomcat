@@ -19,7 +19,7 @@ RUN apt-get update \
 	&& add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb \
 	&& apt-get update \
 	&& cd ~/ \
-	&& apt-get install adoptopenjdk-8-hotspot \
+	&& apt-get -y install adoptopenjdk-8-hotspot \
 	&& java -version \
 	&& apt-get -y install wget \
 	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
