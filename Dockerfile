@@ -4,6 +4,7 @@ LABEL maintainer="semoss@semoss.org"
 
 ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.26
 ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin
+ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
 
 # Install the following:
 # Java
@@ -13,8 +14,12 @@ ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin
 # Git
 # Nano
 RUN apt-get update \
+	&& apt-get -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common \
+	&& wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - \
+	&& add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb \
+	&& apt-get update \
 	&& cd ~/ \
-	&& apt-get -y install openjdk-8-jdk \
+	&& apt-get install adoptopenjdk-8-hotspot \
 	&& java -version \
 	&& apt-get -y install wget \
 	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
