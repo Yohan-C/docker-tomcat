@@ -17,6 +17,7 @@ RUN apt-get update \
 	&& apt-get -y install openjdk-8-jdk \
 	&& java -version \
 	&& apt-get -y install wget \
+	&& apt-get -y install libopenblas-base \
 	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
 	&& tar -zxvf apache-tomcat-*.tar.gz \
 	&& mkdir $TOMCAT_HOME \
