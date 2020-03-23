@@ -4,10 +4,10 @@ LABEL maintainer="semoss@semoss.org"
 
 ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.26
 ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin
-ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
+ENV JAVA_HOME=/usr/lib/jvm/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64
 
 # Install the following:
-# Java
+# Java - zulu https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz
 # Tomcat
 # Wget
 # Maven
@@ -15,13 +15,15 @@ ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
 # Nano
 RUN apt-get update \
 	&& apt-get -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common \
-	&& wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - \
-	&& add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb \
 	&& apt-get update \
 	&& cd ~/ \
-	&& apt-get -y install adoptopenjdk-8-hotspot \
-	&& java -version \
 	&& apt-get -y install wget \
+	&& mkdir /usr/lib/jvm \
+	&& cd /usr/lib/jbm \
+	&& wget https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& tar -xvf zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& rm -rf zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& java -version \
 	&& apt-get -y install libopenblas-base \
 	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
 	&& tar -zxvf apache-tomcat-*.tar.gz \
