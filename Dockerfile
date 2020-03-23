@@ -3,8 +3,8 @@ FROM debian:10.2
 LABEL maintainer="semoss@semoss.org"
 
 ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.26
-ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin
 ENV JAVA_HOME=/usr/lib/jvm/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64
+ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin:$JAVA_HOME/bin
 
 # Install the following:
 # Java - zulu https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz
