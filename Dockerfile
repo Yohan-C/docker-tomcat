@@ -1,22 +1,29 @@
-FROM debian:9.6
+FROM debian:10.2
 
 LABEL maintainer="semoss@semoss.org"
 
 ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.26
-ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin
+ENV JAVA_HOME=/usr/lib/jvm/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64
+ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin:$JAVA_HOME/bin
 
 # Install the following:
-# Java
+# Java - zulu https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz
 # Tomcat
 # Wget
 # Maven
 # Git
 # Nano
 RUN apt-get update \
+	&& apt-get -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common \
+	&& apt-get update \
 	&& cd ~/ \
-	&& apt-get -y install openjdk-8-jdk \
-	&& java -version \
 	&& apt-get -y install wget \
+	&& mkdir /usr/lib/jvm \
+	&& cd /usr/lib/jvm \
+	&& wget https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& tar -xvf zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& rm -rf zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
+	&& java -version \
 	&& apt-get -y install libopenblas-base \
 	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
 	&& tar -zxvf apache-tomcat-*.tar.gz \
