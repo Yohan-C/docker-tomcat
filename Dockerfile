@@ -1,8 +1,8 @@
-FROM debian:10.2
+FROM debian:10.5
 
 LABEL maintainer="semoss@semoss.org"
 
-ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.26
+ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.
 ENV JAVA_HOME=/usr/lib/jvm/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64
 ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin:$JAVA_HOME/bin
 
@@ -25,12 +25,12 @@ RUN apt-get update \
 	&& rm -rf zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
 	&& java -version \
 	&& apt-get -y install libopenblas-base \
-	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.26/bin/apache-tomcat-9.0.26.tar.gz \
+	&& wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.37/bin/apache-tomcat-9.0.37.tar.gz  \
 	&& tar -zxvf apache-tomcat-*.tar.gz \
 	&& mkdir $TOMCAT_HOME \
-	&& mv apache-tomcat-9.0.26/* $TOMCAT_HOME/ \
-	&& rm -r apache-tomcat-9.0.26 \
-	&& rm apache-tomcat-9.0.26.tar.gz \
+	&& mv apache-tomcat-9.0.37/* $TOMCAT_HOME/ \
+	&& rm -r apache-tomcat-9.0.37 \
+	&& rm apache-tomcat-9.0.37.tar.gz \
 	&& rm $TOMCAT_HOME/conf/server.xml \
 	&& rm $TOMCAT_HOME/conf/web.xml \
 	&& apt-get -y install git \
@@ -49,7 +49,7 @@ RUN apt-get update \
 	&& apt-get -y install nano \
 	&& echo '#!/bin/sh' > $TOMCAT_HOME/bin/start.sh \
 	&& echo 'catalina.sh start' >> $TOMCAT_HOME/bin/start.sh \
-	&& echo 'tail -f /opt/apache-tomcat-9.0.26/logs/catalina.out' >> $TOMCAT_HOME/bin/start.sh \
+	&& echo 'tail -f /opt/apache-tomcat-9.0.37/logs/catalina.out' >> $TOMCAT_HOME/bin/start.sh \
 	&& echo '#!/bin/sh' > $TOMCAT_HOME/bin/stop.sh \
 	&& echo 'shutdown.sh -force' >> $TOMCAT_HOME/bin/stop.sh \
 	&& chmod 777 $TOMCAT_HOME/bin/*.sh \
