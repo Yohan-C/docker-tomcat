@@ -14,10 +14,12 @@ ENV PATH=$PATH:/opt/apache-maven-3.5.4/bin:$TOMCAT_HOME/bin:$JAVA_HOME/bin
 # Git
 # Nano
 RUN apt-get update \
+	&& apt-get -y install wget \
+	&& cd ~/ \
+	&& wget http://security.debian.org/debian-security/pool/updates/main/s/sqlite3/libsqlite3-0_3.16.2-5+deb9u2_amd64.deb \
+	&& apt install ~/libsqlite3-0_3.16.2-5+deb9u2_amd64.deb \
 	&& apt-get -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common \
 	&& apt-get update \
-	&& cd ~/ \
-	&& apt-get -y install wget \
 	&& mkdir /usr/lib/jvm \
 	&& cd /usr/lib/jvm \
 	&& wget https://cdn.azul.com/zulu/bin/zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64.tar.gz \
