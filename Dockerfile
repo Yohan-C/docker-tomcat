@@ -1,4 +1,6 @@
-FROM debian:10.2
+#docker build . -t quay.io/semoss/docker-tomcat:debian10
+
+FROM debian:10
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -41,7 +43,7 @@ RUN apt-get update \
 	&& cp docker-tomcat/server.xml $TOMCAT_HOME/conf/server.xml \
 	&& rm -r docker-tomcat \
 	&& echo 'CATALINA_PID="$CATALINA_BASE/bin/catalina.pid"' > $TOMCAT_HOME/bin/setenv.sh \
-	&& wget https://apache.claz.org/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz \
+	&& wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz  \
 	&& tar -zxvf apache-maven-*.tar.gz \
 	&& mkdir /opt/apache-maven-3.5.4 \
 	&& mv apache-maven-3.5.4/* /opt/apache-maven-3.5.4/ \
